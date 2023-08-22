@@ -1,8 +1,8 @@
 import { z } from 'zod';
+import { PrismaClient } from '@prisma/client';
 import express from 'express';
 
-import { Logger } from './index.js';
-import { PrismaClient } from '@prisma/client';
+import { Logger } from './logger.js';
 
 declare global {
   namespace NodeJS {
@@ -15,7 +15,6 @@ declare global {
 
 const env = z.object({
   NODE_ENV: z.string().default('DEVELOPMENT'),
-
   PORT: z.number().positive().default(3000),
 });
 
@@ -25,4 +24,4 @@ const logger = Logger.instance('trunc');
 const prisma = new PrismaClient();
 const server = express();
 
-export { config, logger, server, prisma as database };
+export { config, logger, server, prisma };

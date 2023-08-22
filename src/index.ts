@@ -4,7 +4,7 @@ import 'dotenv/config';
 
 import { json, urlencoded } from 'express';
 
-import { config, database, logger, server } from './lib/environment.js';
+import { config, logger, server } from './lib/index.js';
 import { home, url } from './routes/index.js';
 import { error } from './middleware/index.js';
 
@@ -15,9 +15,7 @@ server
   .use(urlencoded({ extended: true }))
   .use(error);
 
-server //
-  .use(home)
-  .use(url);
+server.use(home).use(url);
 
 server.listen(config.PORT, () => {
   logger.success(`listening on port ${config.PORT}`);

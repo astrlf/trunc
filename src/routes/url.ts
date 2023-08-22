@@ -5,10 +5,12 @@ import { toShort } from '../controllers/index.js';
 
 const url = Router();
 
-url.post('/:url', async (req, res) => {
-  const short = await toShort(req.params.url);
+url.post('/:url', (req, res) => {
+  if (!req.params.url) return res.status(StatusCodes.BAD_REQUEST).json({ message: 'url is required' });
 
-  res.status(StatusCodes.OK).json({ short });
+  return toShort(req.params.url)
+    .then((slug) => res.status(StatusCodes.OK).json({ message: 'shortened successfully', data: { url: slug } }))
+    .catch((error) => res.status(StatusCodes.BAD_REQUEST).json({ message: error.message }));
 });
 
 export { url };
