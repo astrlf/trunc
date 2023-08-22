@@ -15,7 +15,7 @@ url
         logger.info(`shortened ${req.body.url} to ${data.slug}`);
         res.status(StatusCodes.OK).json({ message: 'shortened successfully', data });
       })
-      .catch((error) => res.status(StatusCodes.BAD_REQUEST).json({ message: error.message }));
+      .catch(({ message }) => res.status(StatusCodes.BAD_REQUEST).json({ message }));
   })
   .delete('/:slug', (req, res) => {
     if (!req.params.slug) return res.status(StatusCodes.BAD_REQUEST).json({ message: 'slug is required' });
@@ -26,7 +26,7 @@ url
         logger.info(`deleted ${slug}`);
         res.status(StatusCodes.OK).json({ message: `deleted ${slug} (${url}) successfully` });
       })
-      .catch((error) => res.status(StatusCodes.BAD_REQUEST).json({ message: error.message }));
+      .catch(({ message }) => res.status(StatusCodes.BAD_REQUEST).json({ message }));
   });
 
 export { url };
