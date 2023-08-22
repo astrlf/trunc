@@ -23,7 +23,7 @@ url
 
     return deleteShort(req.params.slug, req.body.deletionKey)
       .then(({ slug, url }) => {
-        logger.info(`deleted ${slug} originally ${url}`);
+        logger.info(`deleted ${slug}`);
         res.status(StatusCodes.OK).json({ message: `deleted ${slug} (${url}) successfully` });
       })
       .catch((error) => res.status(StatusCodes.BAD_REQUEST).json({ message: error.message }));
