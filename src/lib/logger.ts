@@ -18,7 +18,7 @@ class Logger {
    */
   private static _instance: Logger;
 
-  constructor(public namespace: string) { }
+  constructor(public namespace: string) {}
 
   static instance(namespace: string): Logger {
     if (!Logger._instance) {

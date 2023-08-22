@@ -1,10 +1,10 @@
 // TODO: If none found, return 404
-function fromShort(id: string) {
-  return 'todo';
+function fromShort(slug: string) {
+  return void slug;
 }
 
 function toShort(url: string) {
-  return 'todo';
+  return void url;
 }
 
 export { fromShort, toShort };
