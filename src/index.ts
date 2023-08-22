@@ -1,7 +1,7 @@
 // remove once v20.6.0 lands
 // https://twitter.com/kom_256/status/1692225622091706389
 import 'dotenv/config';
-import { default as express, json, urlencoded } from 'express';
+import express, { json, urlencoded } from 'express';
 
 import { Logger } from './lib/index.js';
 import { home, url } from './routes/index.js';
@@ -28,8 +28,11 @@ server
   .use(json())
   .use(urlencoded({ extended: true }))
   .use(error)
+
+server
   .use(home)
   .use(url)
-  .listen(process.env.PORT, () => {
-    logger.success(`listening on port ${process.env.PORT}`);
-  });
+
+server.listen(process.env.PORT, () => {
+  logger.success(`listening on port ${process.env.PORT}`);
+});
