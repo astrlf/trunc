@@ -16,6 +16,16 @@ function generatePhoneticId(length: number) {
   return id;
 }
 
+function generateDeletionKey() {
+  let key = '';
+
+  for (let i = 0; i < 2; i++) {
+    key += Math.random().toString(36).substring(2);
+  }
+
+  return key;
+}
+
 /**
  * Checks if a string is a valid URL
  */
@@ -31,4 +41,4 @@ function isURL(input: string) {
   return url.protocol === 'http:' || url.protocol === 'https:';
 }
 
-export { isURL, generatePhoneticId };
+export { isURL, generatePhoneticId, generateDeletionKey };

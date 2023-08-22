@@ -7,12 +7,12 @@ const home = Router();
 
 home
   .get('/', (_, res) => res.status(StatusCodes.OK).json({ message: 'pong' }))
-  .get('/:slug', async (req, res) => {
+  .get('/:slug', (req, res) => {
     if (!req.params.slug) return res.status(StatusCodes.BAD_REQUEST).json({ message: 'id is required' });
 
-    return res //
-      .status(StatusCodes.PERMANENT_REDIRECT)
-      .redirect(await fromShort(req.params.slug));
+    return fromShort(req.params.slug)
+      .then(({ url }) => res.status(StatusCodes.PERMANENT_REDIRECT).redirect(url))
+      .catch(({ message }) => res.status(StatusCodes.BAD_REQUEST).json({ message }));
   });
 
 export { home };
