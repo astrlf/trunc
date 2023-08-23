@@ -1,3 +1,6 @@
+import { Response } from 'express';
+import { StatusCodes } from 'http-status-codes';
+
 const VOWELS = 'aeiou';
 const CONSONANTS = 'bcdfghjklmnpqrstvwxyz';
 
@@ -16,6 +19,9 @@ function generatePhoneticId(length: number) {
   return id;
 }
 
+/**
+ * Generates a deletion key
+ */
 function generateDeletionKey() {
   let key = '';
 
@@ -41,4 +47,18 @@ function isURL(input: string) {
   return url.protocol === 'http:' || url.protocol === 'https:';
 }
 
-export { isURL, generatePhoneticId, generateDeletionKey };
+/**
+ * Replies to a request
+ */
+function reply(response: Response, status: StatusCodes, data: Record<string, unknown>) {
+  return response.status(status).json(data);
+}
+
+/**
+ * Redirects to an URL
+ */
+function redirect(response: Response, url: string) {
+ response.status(StatusCodes.PERMANENT_REDIRECT).redirect(url);
+} 
+
+export { isURL, reply, redirect, generatePhoneticId, generateDeletionKey };
