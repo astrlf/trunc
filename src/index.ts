@@ -6,17 +6,14 @@ import { json, urlencoded } from 'express';
 
 import { config, logger, server } from './lib/index.js';
 import { home, url } from './routes/index.js';
-import { error } from './middleware/index.js';
 
 logger.info(`running in ${config.NODE_ENV} mode`);
 
 server
   .use(json())
   .use(urlencoded({ extended: true }))
-  .use(error);
-
-server.use(home).use(url);
-
-server.listen(config.PORT, () => {
-  logger.success(`listening on port ${config.PORT}`);
-});
+  .use(home)
+  .use(url)
+  .listen(config.PORT, () => {
+    logger.success(`listening on port ${config.PORT}`);
+  });
