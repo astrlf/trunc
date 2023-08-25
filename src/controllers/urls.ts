@@ -13,9 +13,16 @@ async function fromShort(slug: string) {
 /**
  * Shortens an url.
  */
-async function toShort(url: string) {
+async function toShort(url: string, custom?: string) {
   if (!url) throw new Error('url is required');
   if (!isURL(url)) throw new Error('url is invalid');
+
+  if (custom) {
+    const result = await prisma.url.findUnique({ where: { slug: custom } });
+    if (result) throw new Error('slug is already taken');
+
+    return prisma.url.create({ data: { slug: custom, deletionKey: generateDeletionKey(), url } });
+  }
 
   return prisma.url.create({ data: { slug: generatePhoneticId(8), deletionKey: generateDeletionKey(), url } });
 }

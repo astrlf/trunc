@@ -1,15 +1,23 @@
 import { Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-import { deleteShort, toShort } from '../controllers/index.js';
-import { reply } from '../lib/index.js';
+import { deleteShort, toShort, fromShort } from '../controllers/index.js';
+import { reply, redirect } from '../lib/index.js';
 
 const url = Router();
 
-url.post('/', ({ body: { url } }, res) => {
+url.get('/:slug', ({ params: { slug } }, res) => {
+  if (!slug) return res.status(StatusCodes.BAD_REQUEST).json({ message: 'id is required' });
+
+  return fromShort(slug)
+    .then(({ url }) => redirect(res, url))
+    .catch(({ message }) => reply(res, StatusCodes.BAD_REQUEST, { message }));
+});
+
+url.post('/', ({ body: { url, custom } }, res) => {
   if (!url) return res.status(StatusCodes.BAD_REQUEST).json({ message: 'url is required' });
 
-  return toShort(url)
+  return toShort(url, custom)
     .then((data) => reply(res, StatusCodes.OK, { message: 'shortened successfully', data }))
     .catch(({ message }) => reply(res, StatusCodes.BAD_REQUEST, { message }));
 });

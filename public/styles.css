@@ -1,0 +1,148 @@
+@font-face {
+  font-family: 'Sofia';
+  src: url('/assets/sofia.ttf');
+}
+
+* {
+  color: #ffff;
+
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #a0826c;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+}
+
+img {
+  width: 128px;
+  height: 128px;
+}
+
+h1 {
+  font-family: 'Sofia';
+  font-size: 84px;
+
+  color: #542901;
+  padding-right: 12px;
+}
+
+input,
+button {
+  font-size: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+
+  border: none;
+  border-radius: 4px;
+
+  background-color: #542901;
+  color: #b39b89;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* If it's not a mobile device, make everything bigger */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 96px;
+  }
+
+  img {
+    width: 156px;
+    height: 156px;
+  }
+
+  input,
+  button {
+    font-size: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .popup {
+    width: 60vw;
+    height: 80vh;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  transition: opacity 500ms;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 80vw;
+  height: 60vh;
+
+  background-color: #a0826c;
+
+  border-radius: 4px;
+  padding: 16px;
+
+  overflow-y: scroll;
+}
+
+#popup__title {
+  font-size: 32px;
+  color: #542901;
+  margin-bottom: 16px;
+}
+
+#popup__body {
+  font-size: 16px;
+  color: #542901;
+}
+
+#close {
+  font-size: 32px;
+  background-color: transparent;
+  border: none;
+  color: #b39b89;
+}
