@@ -19,4 +19,8 @@ $ pnpm dev
 # 📝 notes
 
 - switch to raw sql queries instead of prisma but still use prisma for migrations
-- todo views à la catbox using templates
+- route to get info based on a slug
+- view to inspect slug information
+- handle urls with views
+- implement better logging (make use of NODE_ENV better, maybe switch to winston/pino/morgan/whatever)
+- get better error handling, use a monadic result library if needed
