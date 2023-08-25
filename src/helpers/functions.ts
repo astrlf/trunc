@@ -58,7 +58,7 @@ function reply(response: Response, status: StatusCodes, data: Record<string, unk
  * Redirects to an URL
  */
 function redirect(response: Response, url: string) {
- response.status(StatusCodes.PERMANENT_REDIRECT).redirect(url);
-} 
+  response.status(StatusCodes.PERMANENT_REDIRECT).redirect(url);
+}
 
 export { isURL, reply, redirect, generatePhoneticId, generateDeletionKey };

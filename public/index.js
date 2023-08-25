@@ -1,4 +1,4 @@
-const $ = (selector) => document.querySelector(selector);
+const $ = selector => document.querySelector(selector);
 
 const input = $('input[name="url"]');
 const custom = $('input[name="custom"]');
@@ -39,13 +39,13 @@ $('button[type="submit"]').addEventListener('click', async () => {
 
   popup(
     'Meow!',
-    `Your shortened URL is <a href="${newURL}">${newURL}</a>!<br/>If you want to delete it, use the deletion key (<code>${response.data.deletionKey}</code>)`
+    `Your shortened URL is <a href="${newURL}">${newURL}</a>!<br/>If you want to delete it, use the deletion key (<code>${response.data.deletionKey}</code>)`,
   );
 });
 
 // Clicking on the popup should not close it
 // despite the overlay being above it
-$('.popup').addEventListener('click', (event) => {
+$('.popup').addEventListener('click', event => {
   event.stopPropagation();
 });
 

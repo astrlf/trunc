@@ -5,7 +5,7 @@ import 'dotenv/config';
 import { json, urlencoded, static as serve } from 'express';
 import { resolve } from 'node:path';
 
-import { config, logger, server } from './lib/index.js';
+import { config, logger, server } from './helpers/index.js';
 import { url } from './routes/index.js';
 
 logger.info(`running in ${config.NODE_ENV} mode`);
