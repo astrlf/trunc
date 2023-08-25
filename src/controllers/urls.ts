@@ -38,10 +38,10 @@ async function toShort(url: string, custom?: string) {
 /**
  * Deletes an url by its slug if the deletion key matches.
  */
-async function deleteShort(slug: string, deletionKey: string) {
+async function deleteShort(slug: string, key: string) {
   const result = await prisma.url.findUnique({ where: { slug } });
   if (!result) throw new Error('url not found');
-  if (result.deletionKey !== deletionKey) throw new Error('deletion key is invalid');
+  if (result.deletionKey !== key) throw new Error('deletion key is invalid');
 
   return prisma.url.delete({ where: { slug } });
 }
