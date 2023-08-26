@@ -12,8 +12,8 @@ const config = z
   })
   .parse(process.env);
 
-const prisma = new PrismaClient();
 const logger = pino({ name: 'trunc', level: config.PINO_LOG_LEVEL });
+const prisma = new PrismaClient();
 const server = express();
 
 export { config, logger, server, prisma };

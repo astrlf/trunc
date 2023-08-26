@@ -1,4 +1,4 @@
-import { generateDeletionKey, generatePhoneticId, isURL, prisma } from '../helpers/index.js';
+import { generateDeletionKey, generatePhoneticId, isURL, logger, prisma } from '../helpers/index.js';
 
 /**
  * Finds an url by its slug.
@@ -23,6 +23,7 @@ async function toShort(url: string, custom?: string) {
   const result = await prisma.url.findUnique({ where: { slug: custom } });
   if (result) throw new Error('slug is already taken');
 
+  logger.debug(`shortening ${url} to ${custom}`);
   return prisma.url.create({ data: { slug: custom, deletionKey: generateDeletionKey(), url } });
 }
 
@@ -34,6 +35,7 @@ async function deleteShort(slug: string, key: string) {
   if (!result) throw new Error('url not found');
   if (result.deletionKey !== key) throw new Error('deletion key is invalid');
 
+  logger.debug(`deleting ${slug}`);
   return prisma.url.delete({ where: { slug } });
 }
 
