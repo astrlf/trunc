@@ -22,5 +22,6 @@ $ pnpm dev
 - route to get info based on a slug
 - view to inspect slug information
 - handle urls with views
-- implement better logging (make use of NODE_ENV better, maybe switch to winston/pino/morgan/whatever)
+- ~~implement better logging (make use of NODE_ENV better, maybe switch to winston/pino/morgan/whatever)~~
+- add proper log rotation and add logging in routes for debugging
 - get better error handling, use a monadic result library if needed
