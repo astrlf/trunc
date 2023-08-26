@@ -18,10 +18,7 @@ $ pnpm dev
 
 # 📝 notes
 
-- switch to raw sql queries instead of prisma but still use prisma for migrations
-- route to get info based on a slug
-- view to inspect slug information
-- handle urls with views
+- ~~handle errors with views~~
+  - this is not as straightforward as it seems, since i'm using plain HTML files as views, i can't just pass a variable to the view and have it render the error message, i'd have to use a templating engine like ejs or pug, which i don't want to do for this project
 - ~~implement better logging (make use of NODE_ENV better, maybe switch to winston/pino/morgan/whatever)~~
-- add proper log rotation and add logging in routes for debugging
-- get better error handling, use a monadic result library if needed
+- ~~add proper log rotation and add logging in routes for debugging~~
